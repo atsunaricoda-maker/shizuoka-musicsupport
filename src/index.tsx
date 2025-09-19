@@ -91,9 +91,9 @@ const Footer = () => (
               <i class="fas fa-external-link-alt mr-2"></i>
               すみやグッディ
             </a>
-            <a href="/admin" class="text-gray-400 hover:text-yellow-400 transition-colors flex items-center">
-              <i class="fas fa-edit mr-2"></i>
-              サイト編集ガイド
+            <a href="mailto:info@shizuoka-musicsupport.jp" class="text-gray-400 hover:text-white transition-colors flex items-center">
+              <i class="fas fa-envelope mr-2"></i>
+              お問い合わせ
             </a>
           </div>
         </div>
@@ -1191,8 +1191,8 @@ app.post('/api/contact', async (c) => {
 // 🔧 シンプルな管理システムを統合
 app.route('/admin', adminApp)
 
-// 📝 簡単な編集ガイドページ
-app.get('/admin', (c) => {
+// 📝 簡単な編集ガイドページ（管理者専用・秘密のURL）
+app.get('/npo-admin-edit-guide-2025', (c) => {
   return c.html(`
     <!DOCTYPE html>
     <html lang="ja">
@@ -1250,22 +1250,31 @@ app.get('/admin', (c) => {
             <!-- 編集方法 -->
             <div class="space-y-6">
                 
-                <!-- GitHub編集リンク -->
-                <div class="bg-green-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center">
-                        <i class="fab fa-github text-green-700 mr-3"></i>
-                        🔥 いますぐブラウザで編集！
+                <!-- 管理者向け案内 -->
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-red-600 mr-3"></i>
+                        ⚠️ 管理者専用ページ
                     </h3>
-                    <p class="text-green-800 mb-4">
-                        GitHubリポジトリが作成されました！ブラウザで直接ファイル編集ができます。
+                    <p class="text-red-800 mb-4">
+                        このページは<strong>NPO法人スタッフ専用</strong>です。<br>
+                        サイト編集は技術担当者にご依頼ください。
                     </p>
-                    <a href="https://github.com/atsunaricoda-maker/shizuoka-musicsupport/edit/main/src/config.ts" 
-                       target="_blank"
-                       class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg inline-flex items-center font-medium">
-                        <i class="fab fa-github mr-2"></i>
-                        config.ts を編集する
-                        <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-                    </a>
+                    <div class="bg-white border border-red-200 rounded p-4">
+                        <h4 class="font-semibold text-red-900 mb-2">編集をご希望の場合：</h4>
+                        <ul class="text-sm text-red-800 space-y-1">
+                            <li>• お知らせの追加・変更</li>
+                            <li>• イベント情報の更新</li>
+                            <li>• スタッフ情報の変更</li>
+                            <li>• その他コンテンツの修正</li>
+                        </ul>
+                        <p class="mt-3 text-sm">
+                            <strong>連絡先:</strong> 
+                            <a href="mailto:tech-support@shizuoka-musicsupport.jp" class="text-red-600 hover:text-red-800 underline">
+                                tech-support@shizuoka-musicsupport.jp
+                            </a>
+                        </p>
+                    </div>
                 </div>
 
                 <!-- 方法1: config.ts編集 -->
