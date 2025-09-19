@@ -3,6 +3,7 @@ import { cors } from 'hono/cors'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { renderer } from './renderer'
 import { siteConfig, newsConfig, eventsConfig, staffConfig, programsConfig, faqConfig } from './config'
+import adminApp from './admin-simple'
 
 const app = new Hono()
 
@@ -89,6 +90,10 @@ const Footer = () => (
             <a href="https://sumiya-goody.co.jp/" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors flex items-center">
               <i class="fas fa-external-link-alt mr-2"></i>
               すみやグッディ
+            </a>
+            <a href="/admin" class="text-gray-400 hover:text-yellow-400 transition-colors flex items-center">
+              <i class="fas fa-edit mr-2"></i>
+              サイト編集ガイド
             </a>
           </div>
         </div>
@@ -1182,6 +1187,170 @@ app.post('/api/contact', async (c) => {
     }, 500)
   }
 })
+
+// 🔧 シンプルな管理システムを統合
+app.route('/admin', adminApp)
+
+// 📝 簡単な編集ガイドページ
+app.get('/admin', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>サイト編集ガイド - しずおか音楽文化支援協議会</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+        <style>
+          body { font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', sans-serif; }
+          .code-block { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 1rem; font-family: monospace; overflow-x: auto; }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <!-- ヘッダー -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="max-w-6xl mx-auto px-4 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <i class="fas fa-music text-indigo-600 text-2xl mr-3"></i>
+                        <h1 class="text-xl font-semibold text-gray-900">サイト編集ガイド</h1>
+                    </div>
+                    <a href="/" class="text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-arrow-left mr-1"></i>
+                        サイトに戻る
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="max-w-4xl mx-auto px-4 py-8">
+            
+            <!-- 概要 -->
+            <div class="bg-blue-50 rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    サイト編集について
+                </h2>
+                <p class="text-blue-800 mb-4">
+                    このサイトのコンテンツは<strong>設定ファイル</strong>を編集することで変更できます。<br>
+                    技術的な知識は必要ありませんが、慎重に行うことをお勧めします。
+                </p>
+                <div class="bg-white rounded p-4">
+                    <h3 class="font-semibold text-blue-900 mb-2">現在のサイト情報</h3>
+                    <ul class="text-sm text-blue-800 space-y-1">
+                        <li><i class="fas fa-bullhorn text-blue-600 mr-2"></i>お知らせ: ${siteConfig.news.length}件</li>
+                        <li><i class="fas fa-calendar text-green-600 mr-2"></i>イベント: ${siteConfig.events.length}件</li>
+                        <li><i class="fas fa-question-circle text-orange-600 mr-2"></i>FAQ: ${siteConfig.faq.length}件</li>
+                        <li><i class="fas fa-users text-purple-600 mr-2"></i>スタッフ: ${siteConfig.staff.length}名</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 編集方法 -->
+            <div class="space-y-6">
+                
+                <!-- 方法1: config.ts編集 -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-file-code text-blue-600 mr-3"></i>
+                        編集方法: config.ts ファイル編集
+                    </h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p>すべてのコンテンツは <code class="bg-gray-100 px-2 py-1 rounded font-mono">src/config.ts</code> ファイルに集約されています。</p>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">編集可能な項目例:</h4>
+                            <div class="code-block text-sm">
+// サイトの基本情報<br>
+siteName: "しずおか音楽文化支援協議会", // ← この部分を編集<br>
+<br>
+// お知らせの追加<br>
+news: [<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;title: "新しいお知らせ", // ← タイトルを編集<br>
+&nbsp;&nbsp;&nbsp;&nbsp;content: "内容をここに書く" // ← 内容を編集<br>
+&nbsp;&nbsp;}<br>
+]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 編集できる項目 -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-edit text-gray-800 mr-3"></i>
+                        編集できる項目
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-blue-600">基本情報</h4>
+                            <ul class="text-gray-600 space-y-1 ml-4">
+                                <li>• サイトタイトル</li>
+                                <li>• メインメッセージ</li>
+                                <li>• ボタンテキスト</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-green-600">コンテンツ</h4>
+                            <ul class="text-gray-600 space-y-1 ml-4">
+                                <li>• お知らせの追加・編集</li>
+                                <li>• イベント情報</li>
+                                <li>• FAQ項目</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-purple-600">スタッフ情報</h4>
+                            <ul class="text-gray-600 space-y-1 ml-4">
+                                <li>• 講師・スタッフ紹介</li>
+                                <li>• プロフィール</li>
+                                <li>• 担当楽器</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibible text-orange-600">その他</h4>
+                            <ul class="text-gray-600 space-y-1 ml-4">
+                                <li>• 連絡先情報</li>
+                                <li>• 活動内容</li>
+                                <li>• 協力企業情報</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 注意事項 -->
+                <div class="bg-yellow-50 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-4 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 mr-3"></i>
+                        編集時の注意事項
+                    </h3>
+                    <ul class="text-yellow-800 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2 mt-1"></i>
+                            <span>日本語の部分のみを編集してください</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2 mt-1"></i>
+                            <span>コロン（:）やカンマ（,）などの記号は削除しないでください</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2 mt-1"></i>
+                            <span>編集前にバックアップを作成することをお勧めします</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2 mt-1"></i>
+                            <span>不明な点は技術担当者にお尋ねください</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    </html>
+  `);
+});
 
 // 404ハンドリング
 app.notFound((c) => {

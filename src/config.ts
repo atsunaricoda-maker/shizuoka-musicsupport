@@ -10,7 +10,7 @@ export const siteConfig = {
   
   // メインメッセージ
   hero: {
-    title: "音楽で成長する子どもたちとともに",
+    title: "音楽で成長する子どもたちとともに - テスト編集",
     subtitle: "地域のつながりを創出",
     description: "中学生の吹奏楽部活動を地域みんなで支えよう",
     buttons: {
