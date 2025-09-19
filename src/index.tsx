@@ -40,8 +40,8 @@ app.get('/', (c) => {
       </header>
 
       {/* ヒーローセクション */}
-      <section class="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-20">
-        <div class="absolute inset-0 bg-black opacity-20"></div>
+      <section class="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-20" style="background-image: url('https://images.stockcake.com/public/b/f/2/bf25fc5e-a5f8-4b51-b3b1-8d65ba0b4aa7_large/youth-band-practice-stockcake.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay;">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-800/80 via-purple-800/80 to-pink-800/80"></div>
         <div class="relative container mx-auto px-4 text-center">
           <div class="max-w-4xl mx-auto">
             <h2 class="text-4xl md:text-6xl font-bold mb-6">
@@ -71,6 +71,62 @@ app.get('/', (c) => {
         <div class="absolute top-32 right-1/4 text-3xl opacity-25 text-white musical-note">♩</div>
         <div class="absolute bottom-32 left-1/3 text-4xl opacity-30 text-yellow-300 musical-note">♭</div>
         <div class="absolute top-3/4 right-12 text-2xl opacity-20 text-white musical-note">♯</div>
+      </section>
+
+      {/* 画像ギャラリーセクション */}
+      <section class="py-16 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">活動の様子</h3>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              中学生の皆さんが楽しく音楽活動に取り組んでいる様子をご覧ください
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* 練習風景 */}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
+              <img 
+                src="https://cdn1.genspark.ai/user-upload-image/3_generated/71afa1f7-9703-4583-bba8-d80e974055f0" 
+                alt="中学生吹奏楽部の練習風景" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">楽しい練習風景</h4>
+                <p class="text-gray-600 text-sm">仲間と一緒に楽しく練習しています</p>
+              </div>
+            </div>
+
+            {/* グループ演奏 */}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
+              <img 
+                src="https://images.stockcake.com/public/b/f/2/bf25fc5e-a5f8-4b51-b3b1-8d65ba0b4aa7_large/youth-band-practice-stockcake.jpg" 
+                alt="青少年バンド練習" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">アンサンブル練習</h4>
+                <p class="text-gray-600 text-sm">息の合った演奏を目指して</p>
+              </div>
+            </div>
+
+            {/* 指導風景 */}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
+              <div class="w-full h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                <div class="text-center text-white">
+                  <i class="fas fa-music text-4xl mb-3"></i>
+                  <h4 class="text-lg font-semibold">専門指導</h4>
+                  <p class="text-sm opacity-90">経験豊富な講師陣</p>
+                </div>
+              </div>
+              <div class="p-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">専門指導体制</h4>
+                <p class="text-gray-600 text-sm">プロの講師による丁寧な指導</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 協議会について */}
@@ -114,6 +170,44 @@ app.get('/', (c) => {
               </div>
               <h4 class="text-xl font-semibold mb-3">平等な機会</h4>
               <p class="text-gray-600">経済的要因による子どもたちの体験格差を解消し、すべての子に音楽の機会を。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 楽器紹介セクション */}
+      <section class="py-16 bg-gradient-to-r from-purple-50 to-pink-50 relative">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">扱っている楽器</h3>
+            <div class="w-20 h-1 bg-purple-600 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600">吹奏楽で使用される様々な楽器をサポートしています</p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {/* 管楽器アイコン */}
+            <div class="text-center p-6 bg-white rounded-lg shadow-lg musical-hover">
+              <div class="text-5xl mb-4">🎺</div>
+              <h4 class="font-semibold text-gray-800">金管楽器</h4>
+              <p class="text-sm text-gray-600 mt-2">トランペット<br />ホルン<br />トロンボーン</p>
+            </div>
+
+            <div class="text-center p-6 bg-white rounded-lg shadow-lg musical-hover">
+              <div class="text-5xl mb-4">🎷</div>
+              <h4 class="font-semibold text-gray-800">木管楽器</h4>
+              <p class="text-sm text-gray-600 mt-2">サックス<br />クラリネット<br />フルート</p>
+            </div>
+
+            <div class="text-center p-6 bg-white rounded-lg shadow-lg musical-hover">
+              <div class="text-5xl mb-4">🥁</div>
+              <h4 class="font-semibold text-gray-800">打楽器</h4>
+              <p class="text-sm text-gray-600 mt-2">ドラム<br />ティンパニ<br />木琴</p>
+            </div>
+
+            <div class="text-center p-6 bg-white rounded-lg shadow-lg musical-hover">
+              <div class="text-5xl mb-4">🎶</div>
+              <h4 class="font-semibold text-gray-800">その他</h4>
+              <p class="text-sm text-gray-600 mt-2">指揮<br />楽譜管理<br />音響機材</p>
             </div>
           </div>
         </div>
@@ -211,9 +305,16 @@ app.get('/', (c) => {
           <div class="max-w-4xl mx-auto text-center">
             <h3 class="text-3xl font-bold text-gray-800 mb-8">理事長からのメッセージ</h3>
             <div class="bg-white rounded-lg shadow-lg p-8 musical-hover">
-              <div class="mb-6">
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">北山敦康（きたやまあつやす）</h4>
-                <p class="text-gray-600 text-sm mb-4">静岡大学名誉教授 / NPO法人しずおか音楽文化支援協議会 理事長</p>
+              <div class="flex flex-col md:flex-row items-center mb-6">
+                {/* 理事長写真の代替アイコン */}
+                <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-6">
+                  <i class="fas fa-user-tie text-white text-3xl"></i>
+                </div>
+                <div class="text-center md:text-left">
+                  <h4 class="text-xl font-semibold text-gray-800 mb-2">北山敦康（きたやまあつやす）</h4>
+                  <p class="text-gray-600 text-sm mb-2">静岡大学名誉教授</p>
+                  <p class="text-gray-600 text-sm">NPO法人しずおか音楽文化支援協議会 理事長</p>
+                </div>
               </div>
               <blockquote class="text-gray-700 italic text-lg leading-relaxed">
                 「部活動の地域移行は、すべての子どもたちが将来にわたってスポーツや文化芸術等に親しむことができる平等な体験機会を確保するとともに、地域文化の持続可能性や地域社会の安定的な発展に欠かすことのできない課題となっています。私たちの活動の趣旨にご賛同いただければ幸いです。」
