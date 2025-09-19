@@ -1250,6 +1250,24 @@ app.get('/admin', (c) => {
             <!-- 編集方法 -->
             <div class="space-y-6">
                 
+                <!-- GitHub編集リンク -->
+                <div class="bg-green-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center">
+                        <i class="fab fa-github text-green-700 mr-3"></i>
+                        🔥 いますぐブラウザで編集！
+                    </h3>
+                    <p class="text-green-800 mb-4">
+                        GitHubリポジトリが作成されました！ブラウザで直接ファイル編集ができます。
+                    </p>
+                    <a href="https://github.com/atsunaricoda-maker/shizuoka-musicsupport/edit/main/src/config.ts" 
+                       target="_blank"
+                       class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg inline-flex items-center font-medium">
+                        <i class="fab fa-github mr-2"></i>
+                        config.ts を編集する
+                        <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                    </a>
+                </div>
+
                 <!-- 方法1: config.ts編集 -->
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
