@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { renderer } from './renderer'
+import { siteConfig, newsConfig, eventsConfig, staffConfig, programsConfig, faqConfig } from './config'
 
 const app = new Hono()
 
@@ -113,20 +114,20 @@ app.get('/', (c) => {
         <div class="relative container mx-auto px-4 text-center">
           <div class="max-w-4xl mx-auto">
             <h2 class="text-4xl md:text-6xl font-bold mb-6">
-              音楽で成長する子どもたちとともに<br />
-              <span class="text-yellow-300">地域のつながりを創出</span>
+              {siteConfig.hero.title}<br />
+              <span class="text-yellow-300">{siteConfig.hero.subtitle}</span>
             </h2>
             <p class="text-xl md:text-2xl mb-8 opacity-90">
-              中学生の吹奏楽部活動を地域みんなで支えよう
+              {siteConfig.hero.description}
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#activities" class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-yellow-300 transition-all transform hover:scale-105 inline-flex items-center">
                 <i class="fas fa-play mr-2"></i>
-                活動を見る
+                {siteConfig.hero.buttons.primary}
               </a>
               <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all inline-flex items-center">
                 <i class="fas fa-envelope mr-2"></i>
-                お問い合わせ
+                {siteConfig.hero.buttons.secondary}
               </a>
             </div>
           </div>
@@ -206,39 +207,23 @@ app.get('/', (c) => {
           <div class="absolute top-1/2 right-20 text-xl opacity-10 text-pink-300">♬</div>
           
           <div class="text-center mb-12 relative z-10">
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">私たちについて</h3>
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">{siteConfig.about.title}</h3>
             <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-              国の政策である「公立中学校部活動の地域移行」を見据え、<br />
-              これまで学校教育の一環として行われてきた吹奏楽部の活動を、<br />
-              地域の皆様との連携・協働によって持続可能な形で維持することを目指しています。
+              {siteConfig.about.description}
             </p>
           </div>
           
           <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center p-6 rounded-lg bg-blue-50 hover:shadow-lg transition-shadow musical-hover">
-              <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-users text-white text-2xl"></i>
+            {siteConfig.about.features.map((feature, index) => (
+              <div class={`text-center p-6 rounded-lg ${index === 0 ? 'bg-blue-50' : index === 1 ? 'bg-purple-50' : 'bg-pink-50'} hover:shadow-lg transition-shadow musical-hover`}>
+                <div class={`w-16 h-16 ${index === 0 ? 'bg-blue-600' : index === 1 ? 'bg-purple-600' : 'bg-pink-600'} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <i class={`${feature.icon} text-white text-2xl`}></i>
+                </div>
+                <h4 class="text-xl font-semibold mb-3">{feature.title}</h4>
+                <p class="text-gray-600">{feature.description}</p>
               </div>
-              <h4 class="text-xl font-semibold mb-3">地域連携</h4>
-              <p class="text-gray-600">学校・家庭・地域・企業をつなぐ橋渡し役として、みんなで子どもたちの成長を支えます。</p>
-            </div>
-            
-            <div class="text-center p-6 rounded-lg bg-purple-50 hover:shadow-lg transition-shadow musical-hover">
-              <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-graduation-cap text-white text-2xl"></i>
-              </div>
-              <h4 class="text-xl font-semibold mb-3">教育支援</h4>
-              <p class="text-gray-600">教職員の働きやすさへの貢献による教育環境の向上を目指します。</p>
-            </div>
-            
-            <div class="text-center p-6 rounded-lg bg-pink-50 hover:shadow-lg transition-shadow musical-hover">
-              <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-heart text-white text-2xl"></i>
-              </div>
-              <h4 class="text-xl font-semibold mb-3">平等な機会</h4>
-              <p class="text-gray-600">経済的要因による子どもたちの体験格差を解消し、すべての子に音楽の機会を。</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -476,8 +461,8 @@ app.get('/news', (c) => {
       {/* ページヘッダー */}
       <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
         <div class="container mx-auto px-4 text-center">
-          <h1 class="text-4xl font-bold mb-4">ニュース・お知らせ</h1>
-          <p class="text-xl opacity-90">最新の活動情報をお届けします</p>
+          <h1 class="text-4xl font-bold mb-4">{newsConfig.title}</h1>
+          <p class="text-xl opacity-90">{newsConfig.description}</p>
         </div>
       </section>
 
@@ -486,95 +471,48 @@ app.get('/news', (c) => {
         <div class="container mx-auto px-4">
           <div class="max-w-4xl mx-auto space-y-8">
             
-            {/* ニュース記事1 */}
-            <article class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
-              <div class="md:flex">
-                <div class="md:w-1/3">
-                  <img 
-                    src="https://cdn1.genspark.ai/user-upload-image/3_generated/71afa1f7-9703-4583-bba8-d80e974055f0" 
-                    alt="新年度活動開始" 
-                    class="w-full h-48 md:h-full object-cover"
-                  />
-                </div>
-                <div class="md:w-2/3 p-6">
-                  <div class="flex items-center mb-3">
-                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mr-2">重要</span>
-                    <time class="text-gray-500 text-sm">2024年9月19日</time>
+            {newsConfig.articles.map((article) => (
+              <article class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
+                <div class="md:flex">
+                  <div class="md:w-1/3">
+                    {article.image.startsWith('gradient-') ? (
+                      <div class={`w-full h-48 md:h-full bg-gradient-to-br ${
+                        article.image === 'gradient-blue' ? 'from-blue-400 to-cyan-500' :
+                        article.image === 'gradient-green' ? 'from-green-400 to-blue-500' :
+                        article.image === 'gradient-purple' ? 'from-purple-400 to-pink-500' :
+                        article.image === 'gradient-yellow' ? 'from-yellow-400 to-orange-500' :
+                        article.image === 'gradient-orange' ? 'from-orange-400 to-red-500' :
+                        'from-gray-400 to-gray-500'
+                      } flex items-center justify-center`}>
+                        <i class={`fas ${
+                          article.category === '受賞' ? 'fa-trophy' :
+                          article.category === 'イベント' ? 'fa-calendar-alt' :
+                          article.category === '募集' ? 'fa-users' :
+                          'fa-info-circle'
+                        } text-white text-4xl`}></i>
+                      </div>
+                    ) : (
+                      <img 
+                        src={article.image}
+                        alt={article.title}
+                        class="w-full h-48 md:h-full object-cover"
+                      />
+                    )}
                   </div>
-                  <h2 class="text-xl font-bold text-gray-800 mb-3">2024年度 地域部活動支援プログラム開始！</h2>
-                  <p class="text-gray-600 mb-4">
-                    新年度が始まり、いよいよ中学校部活動の地域移行支援プログラムが本格的にスタートしました。今年度は静岡市内の5校と連携し、約120名の中学生の音楽活動をサポートします。
-                  </p>
-                  <a href="/news/2024-program-start" class="text-blue-600 hover:text-blue-800 font-semibold">続きを読む →</a>
-                </div>
-              </div>
-            </article>
-
-            {/* ニュース記事2 */}
-            <article class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
-              <div class="md:flex">
-                <div class="md:w-1/3">
-                  <div class="w-full h-48 md:h-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
-                    <i class="fas fa-trophy text-white text-4xl"></i>
-                  </div>
-                </div>
-                <div class="md:w-2/3 p-6">
-                  <div class="flex items-center mb-3">
-                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mr-2">受賞</span>
-                    <time class="text-gray-500 text-sm">2024年9月15日</time>
-                  </div>
-                  <h2 class="text-xl font-bold text-gray-800 mb-3">静岡県教育委員会から感謝状を受賞</h2>
-                  <p class="text-gray-600 mb-4">
-                    当協議会の部活動地域移行への取り組みが評価され、静岡県教育委員会より感謝状をいただきました。これからもより一層、子どもたちの音楽活動を支援してまいります。
-                  </p>
-                  <a href="/news/education-award" class="text-blue-600 hover:text-blue-800 font-semibold">続きを読む →</a>
-                </div>
-              </div>
-            </article>
-
-            {/* ニュース記事3 */}
-            <article class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
-              <div class="md:flex">
-                <div class="md:w-1/3">
-                  <div class="w-full h-48 md:h-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-                    <i class="fas fa-calendar-alt text-white text-4xl"></i>
+                  <div class="md:w-2/3 p-6">
+                    <div class="flex items-center mb-3">
+                      <span class={`bg-${article.categoryColor}-100 text-${article.categoryColor}-800 text-xs px-2 py-1 rounded-full mr-2`}>
+                        {article.category}
+                      </span>
+                      <time class="text-gray-500 text-sm">{article.date}</time>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-3">{article.title}</h2>
+                    <p class="text-gray-600 mb-4">{article.excerpt}</p>
+                    <a href={article.link} class="text-blue-600 hover:text-blue-800 font-semibold">続きを読む →</a>
                   </div>
                 </div>
-                <div class="md:w-2/3 p-6">
-                  <div class="flex items-center mb-3">
-                    <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full mr-2">イベント</span>
-                    <time class="text-gray-500 text-sm">2024年9月10日</time>
-                  </div>
-                  <h2 class="text-xl font-bold text-gray-800 mb-3">第1回合同演奏会 開催決定！</h2>
-                  <p class="text-gray-600 mb-4">
-                    10月28日（土）にグランシップ中ホール・大地にて、参加校合同の演奏会を開催します。中学生たちの成長した演奏をぜひお聞きください。入場無料です。
-                  </p>
-                  <a href="/events/joint-concert" class="text-blue-600 hover:text-blue-800 font-semibold">続きを読む →</a>
-                </div>
-              </div>
-            </article>
-
-            {/* ニュース記事4 */}
-            <article class="bg-white rounded-lg shadow-lg overflow-hidden musical-hover">
-              <div class="md:flex">
-                <div class="md:w-1/3">
-                  <div class="w-full h-48 md:h-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
-                    <i class="fas fa-users text-white text-4xl"></i>
-                  </div>
-                </div>
-                <div class="md:w-2/3 p-6">
-                  <div class="flex items-center mb-3">
-                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mr-2">募集</span>
-                    <time class="text-gray-500 text-sm">2024年9月5日</time>
-                  </div>
-                  <h2 class="text-xl font-bold text-gray-800 mb-3">新規参加校・講師を募集中</h2>
-                  <p class="text-gray-600 mb-4">
-                    2025年度からのプログラム参加を希望する中学校、および指導にご協力いただける講師の方を募集しています。音楽教育の経験がある方、ぜひご連絡ください。
-                  </p>
-                  <a href="/news/recruitment" class="text-blue-600 hover:text-blue-800 font-semibold">続きを読む →</a>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
 
           </div>
 
