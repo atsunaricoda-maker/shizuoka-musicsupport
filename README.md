@@ -6,7 +6,8 @@
 - **対象**: 中学生・保護者・教育関係者・地域住民・企業
 
 ## 🌐 URLs
-- **デモサイト**: https://3000-iryh27bfmvd0k7s8tmrbt-6532622b.e2b.dev/
+- **本番サイト**: https://dfc74c47.shizuoka-music-npo.pages.dev
+- **Cloudflare Pages**: https://shizuoka-music-npo.pages.dev
 - **GitHub**: (リポジトリは別途設定予定)
 
 ## 🎯 主な機能・コンテンツ
@@ -129,9 +130,11 @@
 ## 📝 デプロイメント
 
 ### 現在の状況
-- **ステータス**: ✅ 開発環境で稼働中
-- **プラットフォーム**: E2B Sandbox (デモ環境)
+- **ステータス**: 🚀 Cloudflare Pages で本番稼働中
+- **プラットフォーム**: Cloudflare Pages (本番環境)
+- **プロジェクト名**: shizuoka-music-npo
 - **最終更新**: 2025-09-19
+- **運用コスト**: 完全無料 (Google Workspace既存利用)
 
 ### 本番デプロイ手順
 ```bash
