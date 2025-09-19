@@ -26,6 +26,22 @@ export const renderer = jsxRenderer(({ children }) => {
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet" />
         
         <link href="/static/style.css" rel="stylesheet" />
+        
+        {/* Mobile Menu JavaScript */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+              const mobileMenu = document.getElementById('mobile-menu');
+              
+              if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                  mobileMenu.classList.toggle('hidden');
+                });
+              }
+            });
+          `
+        }} />
       </head>
       <body class="font-sans text-gray-800 bg-musical-theme bg-music-notes bg-staff-lines">{children}</body>
     </html>
