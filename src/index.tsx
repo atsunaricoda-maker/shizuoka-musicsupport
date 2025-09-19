@@ -429,7 +429,7 @@ app.get('/', (c) => {
               <p class="text-gray-300 mb-4">
                 部活動の地域移行や私たちの取り組みについて詳しく知りたい方は、こちらからお問い合わせください。
               </p>
-              <a href="mailto:info@shizuoka-musicsupport.jp" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+              <a href="mailto:info@shizuoka-musicsupport.jp?subject=【活動について】お問い合わせ&body=しずおか音楽文化支援協議会 様%0D%0A%0D%0Aいつもお世話になっております。%0D%0A%0D%0A■ お問い合わせ内容%0D%0A（以下にご記入ください）%0D%0A%0D%0A%0D%0A■ お名前%0D%0A%0D%0A■ ご所属（学校名・団体名など）%0D%0A%0D%0A■ 連絡先電話番号%0D%0A%0D%0A■ 返信希望時間帯%0D%0A%0D%0A%0D%0Aよろしくお願いいたします。" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
                 <i class="fas fa-envelope mr-2"></i>
                 メールで問い合わせ
               </a>
@@ -443,10 +443,74 @@ app.get('/', (c) => {
               <p class="text-gray-300 mb-4">
                 企業様、個人の皆様からのご支援を心よりお待ちしております。一緒に子どもたちの未来を支えませんか？
               </p>
-              <a href="mailto:support@shizuoka-musicsupport.jp" class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
+              <a href="mailto:support@shizuoka-musicsupport.jp?subject=【ご支援について】お問い合わせ&body=しずおか音楽文化支援協議会 様%0D%0A%0D%0Aいつもお世話になっております。%0D%0A%0D%0A■ 支援内容について%0D%0A□ 楽器の寄付%0D%0A□ 資金援助%0D%0A□ 講師派遣%0D%0A□ 会場提供%0D%0A□ その他（　　　　　　　）%0D%0A%0D%0A■ 詳細・ご要望%0D%0A%0D%0A%0D%0A■ 企業・団体名%0D%0A%0D%0A■ ご担当者様お名前%0D%0A%0D%0A■ 連絡先電話番号%0D%0A%0D%0A■ 返信希望時間帯%0D%0A%0D%0A%0D%0Aよろしくお願いいたします。" class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
                 <i class="fas fa-hand-holding-heart mr-2"></i>
                 支援について相談
               </a>
+            </div>
+          </div>
+
+          {/* Webフォーム */}
+          <div class="max-w-4xl mx-auto mt-12">
+            <div class="bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-8">
+              <h4 class="text-2xl font-bold text-center mb-6 text-white">
+                <i class="fas fa-edit mr-3"></i>
+                Web フォームでお問い合わせ
+              </h4>
+              
+              <form id="contactForm" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-white font-medium mb-2">お名前 *</label>
+                    <input type="text" name="name" required class="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label class="block text-white font-medium mb-2">メールアドレス *</label>
+                    <input type="email" name="email" required class="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-white font-medium mb-2">ご所属</label>
+                    <input type="text" name="organization" placeholder="学校名・団体名など" class="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label class="block text-white font-medium mb-2">電話番号</label>
+                    <input type="tel" name="phone" class="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block text-white font-medium mb-2">お問い合わせ種別 *</label>
+                  <select name="category" required class="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">選択してください</option>
+                    <option value="活動について">活動について知りたい</option>
+                    <option value="参加希望">活動参加を検討したい</option>
+                    <option value="支援について">支援・協力したい</option>
+                    <option value="講師募集">講師として参加したい</option>
+                    <option value="取材・メディア">取材・メディア関係</option>
+                    <option value="その他">その他</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-white font-medium mb-2">お問い合わせ内容 *</label>
+                  <textarea name="message" required rows="5" class="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="詳しい内容をご記入ください"></textarea>
+                </div>
+                
+                <div class="text-center">
+                  <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold px-8 py-3 rounded-lg transition-colors">
+                    <i class="fas fa-paper-plane mr-2"></i>
+                    送信する
+                  </button>
+                  <p class="text-gray-300 text-sm mt-4 text-center">
+                    送信ボタンを押すと、入力内容でメールが作成されます
+                  </p>
+                </div>
+              </form>
+              
+
             </div>
           </div>
         </div>
