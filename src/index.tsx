@@ -64,16 +64,24 @@ app.get('/', (c) => {
           </div>
         </div>
         
-        {/* 装飾的な音符 */}
-        <div class="absolute top-20 left-10 text-6xl opacity-20">♪</div>
-        <div class="absolute bottom-20 right-10 text-4xl opacity-20">♫</div>
-        <div class="absolute top-1/2 left-1/4 text-3xl opacity-20">♬</div>
+        {/* 装飾的な音符とアニメーション */}
+        <div class="absolute top-20 left-10 text-6xl opacity-30 text-yellow-300 musical-note">♪</div>
+        <div class="absolute bottom-20 right-10 text-5xl opacity-25 text-white musical-note">♫</div>
+        <div class="absolute top-1/2 left-1/4 text-4xl opacity-20 text-yellow-200 musical-note">♬</div>
+        <div class="absolute top-32 right-1/4 text-3xl opacity-25 text-white musical-note">♩</div>
+        <div class="absolute bottom-32 left-1/3 text-4xl opacity-30 text-yellow-300 musical-note">♭</div>
+        <div class="absolute top-3/4 right-12 text-2xl opacity-20 text-white musical-note">♯</div>
       </section>
 
       {/* 協議会について */}
-      <section id="about" class="py-16 bg-white">
+      <section id="about" class="py-16 bg-white bg-sound-waves relative overflow-hidden">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
+          {/* 背景装飾音符 */}
+          <div class="absolute top-10 left-10 text-2xl opacity-10 text-blue-300">♪</div>
+          <div class="absolute bottom-10 right-10 text-3xl opacity-10 text-purple-300">♫</div>
+          <div class="absolute top-1/2 right-20 text-xl opacity-10 text-pink-300">♬</div>
+          
+          <div class="text-center mb-12 relative z-10">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">私たちについて</h3>
             <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -84,7 +92,7 @@ app.get('/', (c) => {
           </div>
           
           <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center p-6 rounded-lg bg-blue-50 hover:shadow-lg transition-shadow">
+            <div class="text-center p-6 rounded-lg bg-blue-50 hover:shadow-lg transition-shadow musical-hover">
               <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-users text-white text-2xl"></i>
               </div>
@@ -92,7 +100,7 @@ app.get('/', (c) => {
               <p class="text-gray-600">学校・家庭・地域・企業をつなぐ橋渡し役として、みんなで子どもたちの成長を支えます。</p>
             </div>
             
-            <div class="text-center p-6 rounded-lg bg-purple-50 hover:shadow-lg transition-shadow">
+            <div class="text-center p-6 rounded-lg bg-purple-50 hover:shadow-lg transition-shadow musical-hover">
               <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-graduation-cap text-white text-2xl"></i>
               </div>
@@ -100,7 +108,7 @@ app.get('/', (c) => {
               <p class="text-gray-600">教職員の働きやすさへの貢献による教育環境の向上を目指します。</p>
             </div>
             
-            <div class="text-center p-6 rounded-lg bg-pink-50 hover:shadow-lg transition-shadow">
+            <div class="text-center p-6 rounded-lg bg-pink-50 hover:shadow-lg transition-shadow musical-hover">
               <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-heart text-white text-2xl"></i>
               </div>
@@ -112,15 +120,21 @@ app.get('/', (c) => {
       </section>
 
       {/* 活動内容 */}
-      <section id="activities" class="py-16 bg-gray-50">
+      <section id="activities" class="py-16 bg-gray-50 bg-instruments relative">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
+          {/* 背景装飾楽器 */}
+          <div class="absolute top-16 left-8 text-4xl opacity-8 text-yellow-400">🎺</div>
+          <div class="absolute bottom-16 right-8 text-3xl opacity-8 text-blue-400">🎷</div>
+          <div class="absolute top-1/3 right-16 text-2xl opacity-8 text-purple-400">🥁</div>
+          <div class="absolute bottom-1/3 left-16 text-3xl opacity-8 text-green-400">🎵</div>
+          
+          <div class="text-center mb-12 relative z-10">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">私たちの活動</h3>
             <div class="w-20 h-1 bg-purple-600 mx-auto mb-6"></div>
           </div>
           
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 musical-hover">
               <div class="text-center mb-4">
                 <i class="fas fa-chalkboard-teacher text-blue-600 text-3xl mb-3"></i>
                 <h4 class="font-semibold text-lg">指導者育成</h4>
@@ -128,7 +142,7 @@ app.get('/', (c) => {
               <p class="text-gray-600 text-sm">講師の人材情報管理と指導者の育成事業を行っています。</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 musical-hover">
               <div class="text-center mb-4">
                 <i class="fas fa-tools text-purple-600 text-3xl mb-3"></i>
                 <h4 class="font-semibold text-lg">楽器管理</h4>
@@ -136,7 +150,7 @@ app.get('/', (c) => {
               <p class="text-gray-600 text-sm">楽器や楽譜の貸し出し等の備品管理事業を実施しています。</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 musical-hover">
               <div class="text-center mb-4">
                 <i class="fas fa-calendar-alt text-green-600 text-3xl mb-3"></i>
                 <h4 class="font-semibold text-lg">演奏機会</h4>
@@ -144,7 +158,7 @@ app.get('/', (c) => {
               <p class="text-gray-600 text-sm">地元企業や教育機関と協働する環境づくりを推進しています。</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 musical-hover">
               <div class="text-center mb-4">
                 <i class="fas fa-yen-sign text-orange-600 text-3xl mb-3"></i>
                 <h4 class="font-semibold text-lg">資金調達</h4>
@@ -156,7 +170,7 @@ app.get('/', (c) => {
       </section>
 
       {/* 支援内容 */}
-      <section id="support" class="py-16 bg-white">
+      <section id="support" class="py-16 bg-white bg-music-notes relative">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">支援を通じて実現したいこと</h3>
@@ -192,11 +206,11 @@ app.get('/', (c) => {
       </section>
 
       {/* 理事長紹介 */}
-      <section class="py-16 bg-gradient-to-r from-blue-100 to-purple-100">
+      <section class="py-16 bg-gradient-to-r from-blue-100 to-purple-100 bg-staff-lines relative">
         <div class="container mx-auto px-4">
           <div class="max-w-4xl mx-auto text-center">
             <h3 class="text-3xl font-bold text-gray-800 mb-8">理事長からのメッセージ</h3>
-            <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="bg-white rounded-lg shadow-lg p-8 musical-hover">
               <div class="mb-6">
                 <h4 class="text-xl font-semibold text-gray-800 mb-2">北山敦康（きたやまあつやす）</h4>
                 <p class="text-gray-600 text-sm mb-4">静岡大学名誉教授 / NPO法人しずおか音楽文化支援協議会 理事長</p>
@@ -210,14 +224,14 @@ app.get('/', (c) => {
       </section>
 
       {/* すみやグッディとの連携 */}
-      <section class="py-16 bg-white">
+      <section class="py-16 bg-white bg-sound-waves relative">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">協力企業</h3>
             <div class="w-20 h-1 bg-green-600 mx-auto mb-6"></div>
           </div>
           
-          <div class="max-w-2xl mx-auto bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8 text-center">
+          <div class="max-w-2xl mx-auto bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8 text-center musical-hover">
             <div class="mb-6">
               <i class="fas fa-handshake text-green-600 text-4xl mb-4"></i>
               <h4 class="text-2xl font-semibold text-gray-800 mb-4">すみやグッディ</h4>

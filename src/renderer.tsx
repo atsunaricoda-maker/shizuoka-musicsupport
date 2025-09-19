@@ -27,7 +27,7 @@ export const renderer = jsxRenderer(({ children }) => {
         
         <link href="/static/style.css" rel="stylesheet" />
       </head>
-      <body class="font-sans text-gray-800 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">{children}</body>
+      <body class="font-sans text-gray-800 bg-musical-theme bg-music-notes bg-staff-lines">{children}</body>
     </html>
   )
 })
