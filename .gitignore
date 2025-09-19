@@ -1,7 +1,38 @@
-# prod
+# Dependencies
+node_modules/
+
+# Production builds
 dist/
 
-# dev
+# Runtime data  
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/
+
+# Dotenv environment variables file
+.env
+.env.production
+.dev.vars
+
+# Wrangler
+.wrangler/
+
+# PM2
+.pm2/
+pids/
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE
 .yarn/
 !.yarn/releases
 .vscode/*
@@ -11,23 +42,16 @@ dist/
 .idea/usage.statistics.xml
 .idea/shelf
 
-# deps
-node_modules/
-.wrangler
-
-# env
-.env
-.env.production
-.dev.vars
-
-# logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# misc
+# OS
 .DS_Store
+Thumbs.db
+
+# Backup files
+*.backup
+*.bak
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.temp
